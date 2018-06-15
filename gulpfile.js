@@ -25,7 +25,7 @@ gulp.task('common-js', function() {
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
-		// 'app/libs/jquery/dist/jquery.min.js',
+		"node_modules/fontfaceobserver/fontfaceobserver.js", // optimized font download
 		'app/js/common.min.js'
 		])
 	.pipe(concat('scripts.min.js'))

@@ -1,3 +1,5 @@
+@import "vars"
+
 /* ------------------------------------- 
 	Font face
  ------------------------------------- */
@@ -8,7 +10,6 @@
  ------------------------------------- */
 @import "libs"
 
-@import "vars"
 
 /* ------------------------------------- 
 	Common styles
@@ -22,19 +23,7 @@
 		-moz-box-sizing: border-box
 		box-sizing: border-box
 
-*::-webkit-input-placeholder
-	color: #666
-	opacity: 1
-
-*:-moz-placeholder
-	color: #666
-	opacity: 1
-
-*::-moz-placeholder
-	color: #666
-	opacity: 1
-
-*:-ms-input-placeholder
+*::placeholder
 	color: #666
 	opacity: 1
 
@@ -51,7 +40,7 @@ body
 	min-width: 320px
 	margin: 0 auto
 	position: relative
-	font: 16px/1.65 $default-font-family
+	font: 16px/1.65 $default-font
 	overflow-x: hidden
 
 .img-responsive
