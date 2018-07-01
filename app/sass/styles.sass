@@ -1,49 +1,20 @@
 @import "vars"
 
 /* ------------------------------------- 
-	Font face
- ------------------------------------- */
+	Font face 
+	------------------------------------- */
 @import "fonts"
 
-/* ------------------------------------- 
-	Libs import
- ------------------------------------- */
-@import "libs"
-
 
 /* ------------------------------------- 
-	Common styles
- ------------------------------------- */
-*
-	-webkit-box-sizing: border-box
-	-moz-box-sizing: border-box
-	box-sizing: border-box
-	&:before, &:after
-		-webkit-box-sizing: border-box
-		-moz-box-sizing: border-box
-		box-sizing: border-box
+	Reset 
+	------------------------------------- */
+@import "reset"
 
-*::placeholder
-	color: #666
-	opacity: 1
 
-body input:focus:required:invalid,
-body textarea:focus:required:invalid
-	color: #666
-body input:required:valid,
-body textarea:required:valid
-	color: #666
-
-.Font body
-	font-family: $default-font // font face observer font's download
-
-body
-	max-width: 1920px
-	min-width: 320px
-	margin: 0 auto
-	position: relative
-	font-size: 16px
-	overflow-x: hidden
+/* ------------------------------------- 
+	Common styles 
+	------------------------------------- */
 
 .img-responsive
 	display: block
@@ -56,18 +27,21 @@ body
 .text-center
 	text-align: center
 
-::selection
-	background-color: $accent-color
-	color: #fff
 
 
 
 /* ------------------------------------- 
-	first__block
- ------------------------------------- */
+	first__block 
+	------------------------------------- */
+
+
+
+
+
+
 
 
 /* ------------------------------------- 
-	Media styles
- ------------------------------------- */
+	Media styles 
+	------------------------------------- */
 @import "media"
