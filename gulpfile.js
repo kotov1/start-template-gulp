@@ -61,7 +61,7 @@ gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 });
 
 
-gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
+gulp.task('build', ['removedist', 'sass', 'js'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
