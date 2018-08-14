@@ -1,5 +1,4 @@
 var gulp           = require('gulp'),
-		gutil          = require('gulp-util' ),
 		sass           = require('gulp-sass'),
 		browserSync    = require('browser-sync'),
 		concat         = require('gulp-concat'),
@@ -7,12 +6,13 @@ var gulp           = require('gulp'),
 		cleanCSS       = require('gulp-clean-css'),
 		rename         = require('gulp-rename'),
 		del            = require('del'),
-		imagemin       = require('gulp-imagemin'),
-		cache          = require('gulp-cache'),
 		autoprefixer   = require('gulp-autoprefixer'),
-		ftp            = require('vinyl-ftp'),
-		notify         = require("gulp-notify"),
-		rsync          = require('gulp-rsync');
+		// cache          = require('gulp-cache'),
+		// imagemin       = require('gulp-imagemin'),
+		// gutil          = require('gulp-util'),
+		// ftp            = require('vinyl-ftp'),
+		// rsync          = require('gulp-rsync')
+		notify         = require("gulp-notify");
 
 gulp.task('common-js', function() {
 	return gulp.src([
@@ -25,7 +25,6 @@ gulp.task('common-js', function() {
 
 gulp.task('js', ['common-js'], function() {
 	return gulp.src([
-		"node_modules/fontfaceobserver/fontfaceobserver.js", // optimized font download
 		'app/js/common.min.js'
 		])
 	.pipe(concat('scripts.min.js'))
@@ -61,11 +60,6 @@ gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 	// gulp.watch('app/*.php', browserSync.reload); // local server
 });
 
-gulp.task('imagemin', function() {
-	return gulp.src('app/img/**/*')
-	.pipe(cache(imagemin()))
-	.pipe(gulp.dest('dist/img')); 
-});
 
 gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 
@@ -91,6 +85,17 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 		]).pipe(gulp.dest('dist/fonts'));
 
 });
+
+gulp.task('removedist', function() { return del.sync('dist'); });
+
+gulp.task('default', ['watch']);
+
+
+// gulp.task('imagemin', function() {
+// 	return gulp.src('app/img/**/*')
+// 	.pipe(cache(imagemin()))
+// 	.pipe(gulp.dest('dist/img')); 
+// });
 
 // gulp.task('deploy', function() {
 
@@ -125,7 +130,4 @@ gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
 // 	}));
 // });
 
-gulp.task('removedist', function() { return del.sync('dist'); });
-gulp.task('clearcache', function () { return cache.clearAll(); });
-
-gulp.task('default', ['watch']);
+// gulp.task('clearcache', function () { return cache.clearAll(); });
