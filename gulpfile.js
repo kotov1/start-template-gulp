@@ -61,7 +61,12 @@ gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
 });
 
 
-gulp.task('build', ['removedist', 'sass', 'js'], function() {
+gulp.task('images', function() {
+	return gulp.src('app/img/**/*')
+	.pipe(gulp.dest('dist/img')); 
+});
+
+gulp.task('build', ['removedist', 'images', 'sass', 'js'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
@@ -90,12 +95,6 @@ gulp.task('removedist', function() { return del.sync('dist'); });
 
 gulp.task('default', ['watch']);
 
-
-// gulp.task('imagemin', function() {
-// 	return gulp.src('app/img/**/*')
-// 	.pipe(cache(imagemin()))
-// 	.pipe(gulp.dest('dist/img')); 
-// });
 
 // gulp.task('deploy', function() {
 
