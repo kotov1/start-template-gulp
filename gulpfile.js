@@ -10,8 +10,7 @@ var gulp          = require('gulp'),
 		cleancss      = require('gulp-clean-css'),
 		rename        = require('gulp-rename'),
 		autoprefixer  = require('gulp-autoprefixer'),
-		notify        = require('gulp-notify'),
-		rsync         = require('gulp-rsync');
+		notify        = require('gulp-notify');
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -20,6 +19,10 @@ gulp.task('browser-sync', function() {
 		},
 		notify: false
 	});
+	// browserSync({
+	// 	proxy: "domen/index.php",
+	// 	notify: false
+	// });
 });
 
 gulp.task('styles', function() {
@@ -34,15 +37,7 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
 	return gulp.src([
-		'app/libs/jquery-ui.min.js',
-		'app/libs/jquery.ui.touch-punch.js',
-		'app/libs/jquery.inputmask.bundle.js',
-		'app/libs/magnific-popup/dist/jquery.magnific-popup.min.js',
-		'app/libs/slick-carousel/slick/slick.min.js',
-		'app/libs/Readmore.js/readmore.min.js',
 		'app/js/common.js',
-		'app/js/contacts-map.js',
-		'app/js/calc.js'
 		])
 	.pipe(concat('scripts.js'))
 	// .pipe(uglify())
@@ -54,21 +49,6 @@ gulp.task('code', function() {
 	return gulp.src('app/*.html')
 	.pipe(browserSync.reload({ stream: true }));
 });
-
-// gulp.task('rsync', function() {
-// 	return gulp.src('app/**')
-// 	.pipe(rsync({
-// 		root: 'app/',
-// 		hostname: 'username@yousite.com',
-// 		destination: 'yousite/public_html/',
-// 		// include: ['*.htaccess'], // Includes files to deploy
-// 		exclude: ['**/Thumbs.db', '**/*.DS_Store'], // Excludes files from deploy
-// 		recursive: true,
-// 		archive: true,
-// 		silent: false,
-// 		compress: true
-// 	}))
-// });
 
 
 gulp.task('watch', function() {

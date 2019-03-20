@@ -1,9 +1,11 @@
-*
-	box-sizing: border-box
-	&::before, &::after
-		box-sizing: border-box
+article, aside, dialog, figcaption, figure, footer, header, main, nav, section, details, menu
+	display: block
+
+@-ms-viewport
+	width: device-width
 
 html
+	box-sizing: border-box
 	font-family: sans-serif
 	line-height: 1.15
 	-webkit-text-size-adjust: 100%
@@ -11,41 +13,31 @@ html
 	-ms-overflow-style: scrollbar
 	-webkit-tap-highlight-color: transparent
 
-
-@-ms-viewport
-	width: device-width
-
-
-article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section
-	display: block
+*
+	-webkit-box-sizing: inherit
+	box-sizing: inherit
+	&::before, &::after
+		-webkit-box-sizing: inherit
+		box-sizing: inherit
 
 body
 	margin: 0
 	position: relative
-	font: 400 1rem/1.5 $default-font
+	font: 400 1rem/1.3 $default-font, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 	text-align: left
-	color: #000
-	background-color: #fff
+	color: $text-color
+	background-color: $white
 	overflow-x: hidden
 
-[tabindex="-1"]:focus
-	outline: 0 !important
 
 h1, h2, h3, h4, h5, h6
 	margin-top: 0
-	margin-bottom: 0.5rem
+	margin-bottom: .5em
 
 p
 	margin-top: 0
 	margin-bottom: 1rem
 
-abbr
-	&[title], &[data-original-title]
-		text-decoration: underline
-		-webkit-text-decoration: underline dotted
-		text-decoration: underline dotted
-		cursor: help
-		border-bottom: 0
 
 address
 	margin-bottom: 1rem
@@ -55,13 +47,10 @@ address
 ol, ul, dl
 	margin-top: 0
 	margin-bottom: 1rem
-
 ol ol, ul ul, ol ul, ul ol
 	margin-bottom: 0
-
 dt
 	font-weight: 700
-
 dd
 	margin-bottom: .5rem
 	margin-left: 0
@@ -76,34 +65,32 @@ small
 	font-size: 80%
 
 sub, sup
-	position: relative
 	font-size: 75%
 	line-height: 0
+	position: relative
 	vertical-align: baseline
-
 sub
-	bottom: -.25em
-
+	bottom: -0.25em
 sup
-	top: -.5em
+	top: -0.5em
 
 a
-	color: #007bff
+	color: #0275d8
 	text-decoration: none
 	background-color: transparent
 	-webkit-text-decoration-skip: objects
-	&:hover
-		color: #0056b3
+	&:focus, &:hover
+		color: #014c8c
 		text-decoration: underline
+	&:active, &:hover
+		outline-width: 0
 	&:not([href]):not([tabindex])
 		color: inherit
 		text-decoration: none
-		&:hover
+		&:focus, &:hover
 			color: inherit
 			text-decoration: none
 		&:focus
-			color: inherit
-			text-decoration: none
 			outline: 0
 
 code
@@ -116,12 +103,15 @@ figure
 img
 	vertical-align: middle
 	border-style: none
+	&::selection
+		background: none
 
 svg:not(:root)
 	overflow: hidden
 
 table
 	border-collapse: collapse
+	background-color: transparent
 
 caption
 	padding-top: 0.75rem
@@ -137,11 +127,18 @@ label
 	display: inline-block
 	margin-bottom: .5rem
 
+a, area, button, [role="button"], input, label, select, summary, textarea
+	-ms-touch-action: manipulation
+	touch-action: manipulation
+
 button
 	border-radius: 0
 	&:focus
-		outline: 1px dotted
-		outline: 5px auto -webkit-focus-ring-color
+		outline: none
+
+button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-moz-focus-inner, [type="submit"]::-moz-focus-inner
+	border-style: none
+	padding: 0
 
 input, button, select, optgroup, textarea
 	margin: 0
@@ -162,59 +159,67 @@ button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-mo
 	padding: 0
 	border-style: none
 
-input
-	&[type="radio"], &[type="checkbox"]
-		box-sizing: border-box
-		padding: 0
-	&[type="date"], &[type="time"], &[type="datetime-local"], &[type="month"]
-		-webkit-appearance: listbox
-
-textarea
-	overflow: auto
-	resize: vertical
-
 fieldset
 	min-width: 0
 	padding: 0
 	margin: 0
 	border: 0
-
 legend
 	display: block
 	width: 100%
-	max-width: 100%
 	padding: 0
 	margin-bottom: .5rem
 	font-size: 1.5rem
 	line-height: inherit
-	color: inherit
-	white-space: normal
+
+input
+	&[type="radio"], &[type="checkbox"]
+		box-sizing: border-box
+		padding: 0
+	&[type="radio"]:disabled, &[type="checkbox"]:disabled
+		cursor: not-allowed
+	&[type="date"], &[type="time"], &[type="datetime-local"], &[type="month"]
+		-webkit-appearance: listbox
+	&[type="search"]
+		-webkit-appearance: textfield
+		outline-offset: -2px
+		&::-webkit-search-cancel-button, &::-webkit-search-decoration
+			-webkit-appearance: none
+
+textarea
+	overflow: auto
+	resize: vertical
+
+[type="checkbox"], [type="radio"]
+	-webkit-box-sizing: border-box
+	box-sizing: border-box
+	padding: 0
 
 [type="number"]
 	&::-webkit-inner-spin-button, &::-webkit-outer-spin-button
 		height: auto
 
-[type="search"]
-	outline-offset: -2px
-	-webkit-appearance: none
-	&::-webkit-search-cancel-button, &::-webkit-search-decoration
-		-webkit-appearance: none
+[tabindex="-1"]:focus
+	outline: 0 !important
+
+[role="button"]
+	cursor: pointer
 
 ::-webkit-file-upload-button
 	font: inherit
 	-webkit-appearance: button
 
+[hidden]
+	display: none !important
+
+
 *::placeholder
-	color: #000
+	color: #ababab
 	opacity: 1
 
 body input:focus:required:invalid,
 body textarea:focus:required:invalid
-	color: #000
+	color: $text-color
 body input:required:valid,
 body textarea:required:valid
-	color: #000
-
-// ::selection
-// 	background-color: $accent-color
-// 	color: #fff
+	color: $text-color
