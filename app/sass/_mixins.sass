@@ -1,0 +1,6 @@
+@mixin max-screen($size)
+    @media screen and (max-width : $size)
+        @content
+
+@mixin trs($duration)
+    transition: all $duration linear

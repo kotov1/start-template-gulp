@@ -1,0 +1,12 @@
+*::placeholder
+	color: rgba($text-color, .5)
+	opacity: 1
+	@include trs(.1s)
+
+body input:focus:required:invalid, body textarea:focus:required:invalid,
+body input:required:valid, body textarea:required:valid
+	color: $text-color
+
+
+
+

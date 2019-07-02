@@ -1,8 +1,6 @@
 var syntax        = 'sass';
 
-
 var gulp          = require('gulp'),
-		gutil         = require('gulp-util' ),
 		sass          = require('gulp-sass'),
 		browserSync   = require('browser-sync'),
 		concat        = require('gulp-concat'),
@@ -10,7 +8,9 @@ var gulp          = require('gulp'),
 		cleancss      = require('gulp-clean-css'),
 		rename        = require('gulp-rename'),
 		autoprefixer  = require('gulp-autoprefixer'),
-		notify        = require('gulp-notify');
+		pug 		   = require('gulp-pug'),
+		notify        = require('gulp-notify'),
+		del = require('del');
 
 gulp.task('browser-sync', function() {
 	browserSync({
@@ -45,16 +45,30 @@ gulp.task('scripts', function() {
 	.pipe(browserSync.reload({ stream: true }));
 });
 
-gulp.task('code', function() {
-	return gulp.src('app/*.html')
+// HTML
+// gulp.task('code', function() {
+// 	return gulp.src('app/*.html')
+// 	.pipe(browserSync.reload({ stream: true }));
+// });
+
+// PUG
+gulp.task('pugCompile', function() {
+	return gulp.src('app/pug/**/*.pug')
+	.pipe(pug({pretty: true}))
+	.pipe(gulp.dest('app'))
 	.pipe(browserSync.reload({ stream: true }));
 });
+gulp.task('pugClean', function () {
+	return del('app/pug-modules', {force:true});
+});
+gulp.task('code', gulp.series('pugCompile', 'pugClean'));
 
 
 gulp.task('watch', function() {
 	gulp.watch('app/'+syntax+'/**/*.'+syntax+'', gulp.parallel('styles'));
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
-	gulp.watch('app/*.html', gulp.parallel('code'));
+	// gulp.watch('app/*.html', gulp.parallel('code'));
+	gulp.watch(['app/pug/**/*.pug'], gulp.parallel('code'));
 });
 
 gulp.task('default', gulp.parallel('watch', 'styles', 'scripts', 'browser-sync'));

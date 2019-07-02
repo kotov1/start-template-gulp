@@ -7,7 +7,6 @@ article, aside, dialog, figcaption, figure, footer, header, main, nav, section, 
 html
 	box-sizing: border-box
 	font-family: sans-serif
-	line-height: 1.15
 	-webkit-text-size-adjust: 100%
 	-ms-text-size-adjust: 100%
 	-ms-overflow-style: scrollbar
@@ -23,10 +22,9 @@ html
 body
 	margin: 0
 	position: relative
-	font: 400 1rem/1.3 $default-font, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
+	font-size: 1rem
+	font-family: $default-font, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif
 	text-align: left
-	color: $text-color
-	background-color: $white
 	overflow-x: hidden
 
 
@@ -132,7 +130,11 @@ a, area, button, [role="button"], input, label, select, summary, textarea
 	touch-action: manipulation
 
 button
+	padding: 0
+	background-color: transparent
+	border: none
 	border-radius: 0
+	cursor: pointer
 	&:focus
 		outline: none
 
@@ -211,15 +213,3 @@ textarea
 
 [hidden]
 	display: none !important
-
-
-*::placeholder
-	color: #ababab
-	opacity: 1
-
-body input:focus:required:invalid,
-body textarea:focus:required:invalid
-	color: $text-color
-body input:required:valid,
-body textarea:required:valid
-	color: $text-color
