@@ -1,12 +1,17 @@
 /* ------------------------------------- 
 	Common styles 
 	------------------------------------- */
-	
-body
-	line-height: 1.3
-	color: $text-color
-	background-color: $white
-	
+.main-wrapper
+	display: flex
+	flex-direction: column
+	min-height: 100vh
+	.page
+		flex: 1
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
+	.main-wrapper
+		display: block
+
+
 .container
 	width: 100%
 	padding-right: 15px
@@ -47,6 +52,11 @@ body
 .text-center
 	text-align: center
 
+.list
+	margin: 0
+	padding: 0
+	list-style: none
+
 
 
 /* ---------- Titles & text ---------- */
@@ -54,7 +64,22 @@ body
 
 
 /* ----- Кнопки ----- */
-.btn
+.button
+	display: inline-flex
+	align-items: center
+	justify-content: center
+	width: 252px
+	height: 52px
+	padding-top: 2px
+	font-size: 16px
+	line-height: 1
+	text-transform: uppercase
+	color: $white
+	position: relative
+	z-index: 1
+	cursor: pointer
+	overflow: hidden
+	@include trs(.1s)
 
 
 

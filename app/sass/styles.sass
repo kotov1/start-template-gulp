@@ -1,14 +1,10 @@
-@import "vars"
+@import "_include/vars"
+@import "_include/mixins"
 
-@import "mixins"
-
-@import "fonts"
-
-@import "libs"
-
-@import "reset"
-
-@import "common"
+@import "_include/fonts"
+@import "_include/libs"
+@import "_include/reset"
+@import "_include/common"
 
 
 
@@ -16,15 +12,19 @@
 	Modules 
 	------------------------------------- */
 @import "_modules/forms"
-// @import "_modules/header"
-// @import "_modules/footer"
+
+
+/* ------------------------------------- 
+	Sections 
+	------------------------------------- */
+@import "_sections/header"
+@import "_sections/footer"
 
 
 /* ------------------------------------- 
 	Pages 
 	------------------------------------- */
 @import "_pages/mainpage"
-
 
 
 

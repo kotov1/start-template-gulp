@@ -2,6 +2,7 @@
 /dist/
 /files/
 /.git/
+/package-lock.json
 /app/css/
 /app/libs/
 /**/_backstage
